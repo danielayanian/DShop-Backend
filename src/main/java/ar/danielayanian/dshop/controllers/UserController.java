@@ -19,11 +19,6 @@ public class UserController {
     @Autowired
     private UserService userService;
     
-    @GetMapping("/registro") //Eliminar
-    public String saveUserEliminar(){
-    	return "Holaaa";
-    }
-    
     @PostMapping("/registro")
     public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO){
         
