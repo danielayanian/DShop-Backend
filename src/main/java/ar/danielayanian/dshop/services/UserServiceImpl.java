@@ -23,25 +23,25 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public String addUser(UserDTO userDTO) {
+    public UserDTO addUser(UserDTO userDTO) {
 
-        User user = new User(
+    	User user = new User();
+    	user.setNombre(userDTO.getNombre());
+    	user.setApellido(userDTO.getApellido());
+    	user.setEmail(userDTO.getEmail());
+    	user.setPassword(this.passwordEncoder.encode(userDTO.getPassword()));
 
-                userDTO.getNombre(),
-                userDTO.getEmail(),
-                userDTO.getPassword(),
+        user = userRepository.save(user);
+        
+        UserDTO userDTOdeRetorno = new UserDTO(user.getId(), user.getNombre(),
+        		user.getApellido(), "", "");
 
-                this.passwordEncoder.encode(userDTO.getPassword())
-        );
-
-        userRepository.save(user);
-
-        return user.getNombre();
+        return userDTOdeRetorno;
     }
 
     @Override
     public LoginMessage loginUser(LoginDTO loginDTO) {
-        String msg = "";
+ 
         User user1 = userRepository.findByEmail(loginDTO.getEmail());
         if (user1 != null) {
             String password = loginDTO.getPassword();

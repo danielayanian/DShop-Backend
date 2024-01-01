@@ -6,7 +6,7 @@ import ar.danielayanian.dshop.testMessages.LoginMessage;
 
 public interface UserService {
 	
-    public String addUser(UserDTO userDTO);
+    public UserDTO addUser(UserDTO userDTO);
 
     public LoginMessage loginUser(LoginDTO loginDTO);
 

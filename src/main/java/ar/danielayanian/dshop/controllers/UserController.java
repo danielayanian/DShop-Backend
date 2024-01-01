@@ -2,6 +2,7 @@ package ar.danielayanian.dshop.controllers;
 
 import ar.danielayanian.dshop.DTOs.LoginDTO;
 import ar.danielayanian.dshop.DTOs.UserDTO;
+import ar.danielayanian.dshop.entities.User;
 import ar.danielayanian.dshop.services.UserService;
 import ar.danielayanian.dshop.testMessages.LoginMessage;
 
@@ -19,21 +20,24 @@ public class UserController {
     @Autowired
     private UserService userService;
     
-    @PostMapping("/registro")
-    public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO){
+    @PostMapping("/registroPrueba")
+    public ResponseEntity<UserDTO> saveUserPrueba(@RequestBody UserDTO userDTO){
         
     	System.out.println(userDTO.getNombre());
     	
-    	//Aca esta el error, en el retorno
-    	
     	HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("content-type", "application/json");
-    	//return new ResponseEntity.ok().header().body(userDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(userDTO);
-    	//return new ResponseEntity<UserDTO>(userDTO,responseHeaders, HttpStatus.OK);
     	
-    	/*String id = userService.addUser(userDTO);
-        return id;*/
+        return ResponseEntity.status(HttpStatus.OK).body(userDTO);
+    	
+    }
+    
+    @PostMapping(path = "/registro")
+    public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO){
+    	
+        UserDTO userDTOdeRetorno = userService.addUser(userDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(userDTOdeRetorno);
+        
     }
     
     @PostMapping("/login")
