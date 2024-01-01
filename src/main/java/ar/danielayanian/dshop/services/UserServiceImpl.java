@@ -42,25 +42,36 @@ public class UserServiceImpl implements UserService {
     @Override
     public LoginMessage loginUser(LoginDTO loginDTO) {
  
+    	LoginMessage loginMessage;
+    	
+    	System.out.println(loginDTO.getEmail());
+    	
         User user1 = userRepository.findByEmail(loginDTO.getEmail());
+        
+        
+        
         if (user1 != null) {
             String password = loginDTO.getPassword();
             String encodedPassword = user1.getPassword();
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
             if (isPwdRight) {
                 Optional<User> user = userRepository.findOneByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
+                
                 if (user.isPresent()) {
-                    return new LoginMessage("Login Success", true);
+                	LoginDTO loginDTOdeRetorno = new LoginDTO(user1.getId(), user1.getNombre(),
+                			user1.getApellido(), user1.getEmail(), "");
+                	loginMessage = new LoginMessage("Login exitoso", loginDTOdeRetorno, true);
                 } else {
-                    return new LoginMessage("Login Failed", false);
+                	loginMessage = new LoginMessage("Login fallido, intente nuevamente", null, false);
                 }
             } else {
-
-                return new LoginMessage("password Not Match", false);
+            	loginMessage = new LoginMessage("La contraseña es incorrecta", null, false);
             }
         }else {
-            return new LoginMessage("Email not exits", false);
+        	loginMessage = new LoginMessage("No existe el email", null, false);
         }
+        
+        return loginMessage;
 
     }
 

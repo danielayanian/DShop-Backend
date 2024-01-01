@@ -20,19 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     
-    @PostMapping("/registroPrueba")
-    public ResponseEntity<UserDTO> saveUserPrueba(@RequestBody UserDTO userDTO){
-        
-    	System.out.println(userDTO.getNombre());
-    	
-    	HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("content-type", "application/json");
-    	
-        return ResponseEntity.status(HttpStatus.OK).body(userDTO);
-    	
-    }
-    
-    @PostMapping(path = "/registro")
+    @PostMapping("/registro")
     public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO){
     	
         UserDTO userDTOdeRetorno = userService.addUser(userDTO);
@@ -41,9 +29,11 @@ public class UserController {
     }
     
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody LoginDTO loginDTO)
-    {
-        LoginMessage loginResponse = userService.loginUser(loginDTO);
-        return ResponseEntity.ok(loginResponse);
+    public ResponseEntity<?> loginUser(@RequestBody LoginDTO loginDTO){
+    	
+    	LoginMessage loginMessage = userService.loginUser(loginDTO);
+        return ResponseEntity.ok(loginMessage);
+        
     }
+    
 }
