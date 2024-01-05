@@ -9,8 +9,8 @@ import ar.danielayanian.dshop.DTOs.LoginDTO;
 import ar.danielayanian.dshop.DTOs.UserDTO;
 import ar.danielayanian.dshop.entities.User;
 import ar.danielayanian.dshop.repositories.UserRepository;
-import ar.danielayanian.dshop.testMessages.LoginMessage;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +22,28 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Override
+    public User userRegist(User user) {
+    	
+    	return userRepository.save(user);
+    	
+    }
+    
+    @Override
+    public Optional<User> findByEmail(String username){
+    	
+    	return userRepository.findByEmail(username);
+    	
+    }
+    
+    @Override
+    public List<User> findAll(){
+    	
+    	return userRepository.findAll();
+    	
+    }
+    
+    /*
     @Override
     public UserDTO addUser(UserDTO userDTO) {
 
@@ -74,5 +96,6 @@ public class UserServiceImpl implements UserService {
         return loginMessage;
 
     }
+    */
 
 }

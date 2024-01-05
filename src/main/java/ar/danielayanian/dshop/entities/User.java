@@ -19,8 +19,8 @@ import lombok.NoArgsConstructor;
 public class User {
 
 	@Id
-    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
     private int id;
     
     @Column(name="nombre", length = 255)
@@ -29,10 +29,13 @@ public class User {
     @Column(name="apellido", length = 255)
     private String apellido;
     
-    @Column(name="email", length = 255)
+    @Column(name="email", length = 255, unique = true)
     private String email;
     
     @Column(name="password", length = 255)
     private String password;
+    
+    @Column(name="roles", length = 255)
+    private String roles;
     
 }
