@@ -1,5 +1,6 @@
 package ar.danielayanian.dshop.controllers;
 
+import ar.danielayanian.dshop.DTOs.UserDTO;
 import ar.danielayanian.dshop.entities.User;
 import ar.danielayanian.dshop.services.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
 public class UserController {
 	
 	@Autowired
@@ -24,67 +24,59 @@ public class UserController {
     
     @Autowired
     private PasswordEncoder passwordEncoder;
-	
     
-    /*@PostMapping("/registro")
-    public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO){
+    @PostMapping("/api/user/registration")
+    public ResponseEntity<Object> saveUSer(@RequestBody UserDTO userDTO){
     	
-        UserDTO userDTOdeRetorno = userService.addUser(userDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(userDTOdeRetorno);
-        
-    }*/
-    
-    @PostMapping("/user/registration")
-    public ResponseEntity<Object> saveUSer(@RequestBody User user){
+    	Optional<UserDTO> userOpt = userService.findByEmail(userDTO.getEmail());
     	
-    	Optional<User> existeUsuario = userService.findByEmail(user.getEmail());
+    	UserDTO userDTOResponse = new UserDTO();
     	
-    	if(existeUsuario.isPresent()) {
-    		user.setId(-33);//El mail ya estaba registrado
-    		return ResponseEntity.ok(user);
+    	if(userOpt.isPresent()) {
+    		userDTOResponse.setId(-33);//El mail ya estaba registrado
+    		return ResponseEntity.ok(userDTOResponse);
     	}
     	
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        User result = userService.userRegist(user);
+    	userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+    	UserDTO result = userService.userRegist(userDTO);
         
         if (result.getId() > 0){
-        	User userToResponse = new User();
-        	userToResponse.setId(result.getId());
-        	userToResponse.setNombre(result.getNombre());
-        	userToResponse.setApellido(result.getApellido());
+        	userDTOResponse.setId(result.getId());
+        	userDTOResponse.setNombre(result.getNombre());
+        	userDTOResponse.setApellido(result.getApellido());
         	
-            return ResponseEntity.ok(userToResponse);//Usuario creado
+            return ResponseEntity.ok(userDTOResponse);//Usuario creado
         }
-        user.setId(-32);//Hubo un error y el usuario no ha sido registrado
-		return ResponseEntity.ok(user);
+        userDTOResponse.setId(-32);//Hubo un error y el usuario no ha sido registrado
+		return ResponseEntity.ok(userDTOResponse);
         
     }
     
-    @GetMapping("/todo")
+    @GetMapping("/api/todo")
     public String todos() {
 
         return "Estoy logueado de antes";
 
     }
     
-    @PostMapping("/")
+    @GetMapping("/")
     public String successfulLogin(){
     	
-    	return "Thisn is publickly accesible withing needing authentication ";
+    	return "Login correcto";
         
     }
     
-    @GetMapping("/user/all")
+    /*@GetMapping("/api/user/all")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<List<User>> getAllUSers(){
+    public ResponseEntity<List<UserDTO>> getAllUSers(){
     	
         return ResponseEntity.ok(userService.findAll());
         
-    }
+    }*/
     
-    @GetMapping("/user/single")
+    @GetMapping("/api/user/single")
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
-    public ResponseEntity<User> getUserDetails(){
+    public ResponseEntity<UserDTO> getUserDetails(){
     	
         return ResponseEntity.ok(userService.findByEmail(getLoggedInUserDetails().getUsername()).get());
     

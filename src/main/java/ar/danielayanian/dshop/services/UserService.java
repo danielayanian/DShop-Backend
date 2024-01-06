@@ -9,11 +9,11 @@ import ar.danielayanian.dshop.entities.User;
 
 public interface UserService {
 	
-	public User userRegist(User user);
+	public UserDTO userRegist(UserDTO userDTO);
 	
-	public Optional<User> findByEmail(String username);
+	public Optional<UserDTO> findByEmail(String username);
 	
-	public List<User> findAll();
+	//public List<UserDTO> findAll();
 	
     //public UserDTO addUser(UserDTO userDTO);
 
