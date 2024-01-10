@@ -52,13 +52,6 @@ public class UserController {
         
     }
     
-    @GetMapping("/api/todo")
-    public String todos() {
-
-        return "Estoy logueado de antes";
-
-    }
-    
     @GetMapping("/")
     public String successfulLogin(){
     	
