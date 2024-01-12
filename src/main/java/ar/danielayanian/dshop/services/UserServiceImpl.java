@@ -53,6 +53,7 @@ public class UserServiceImpl implements UserService {
         	userDTO.setId(userOpt.get().getId());
         	userDTO.setNombre(userOpt.get().getNombre());
         	userDTO.setApellido(userOpt.get().getApellido());
+        	userDTO.setRoles(userOpt.get().getRoles());
         	
         	Optional<UserDTO> userDTOOpt = Optional.ofNullable(userDTO);
         	return userDTOOpt;
