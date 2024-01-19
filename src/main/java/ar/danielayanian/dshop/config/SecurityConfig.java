@@ -49,7 +49,10 @@ public class SecurityConfig {
     
     	
     	http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/login", "/api/user/registration", "/pagina").permitAll()
+                        .requestMatchers("/", "/login", "/api/user/registration", "/pagina",
+                        		"/listarDestacados", "/listarOfertas",
+                        		"/listarTelevisores", "/listarCelulares",
+                        		"/listarNotebooks").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults())
                 .formLogin(withDefaults())

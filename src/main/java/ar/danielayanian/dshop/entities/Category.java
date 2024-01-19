@@ -1,5 +1,7 @@
 package ar.danielayanian.dshop.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,33 +16,18 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="product")
-public class Product {
-	
+@Table(name="category")
+public class Category {
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
     private int id;
 
-	@Column(name="titulo", length = 255)
-    private String titulo;
+	@Column(name="nombre", length = 255)
+    private String nombre;
 	
-	@Column(name="descripcion", length = 255)
-    private String descripcion;
-	
-	@Column(name="precio", length = 255)
-    private String precio;
-	
-	@Column(name="destacado")
-    private int destacado;
-	
-	@Column(name="oferta")
-    private int oferta;
-	
-	@Column(name="active")
-    private int active;
-	
-	//@Column(name="category")
-    //private Category category;
+	//@Column(name="products")
+	//private List<Product> products;
 	
 }

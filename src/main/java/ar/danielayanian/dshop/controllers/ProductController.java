@@ -20,4 +20,39 @@ public class ProductController {
 		
 	}
 	
+	@GetMapping("/listarDestacados")
+	public ResponseEntity<?> listarProductoDestacados(Pageable pageable) {
+	
+		return ResponseEntity.ok().body(productService.findDestacados(pageable));
+		
+	}
+	
+	@GetMapping("/listarOfertas")
+	public ResponseEntity<?> listarProductoOfertas(Pageable pageable) {
+	
+		return ResponseEntity.ok().body(productService.findOfertas(pageable));
+		
+	}
+	
+	@GetMapping("/listarTelevisores")
+	public ResponseEntity<?> listarProductoTelevisores(Pageable pageable) {
+	
+		return ResponseEntity.ok().body(productService.findTelevisores(pageable));
+		
+	}
+	
+	@GetMapping("/listarCelulares")
+	public ResponseEntity<?> listarProductoCelulares(Pageable pageable) {
+	
+		return ResponseEntity.ok().body(productService.findCelulares(pageable));
+		
+	}
+	
+	@GetMapping("/listarNotebooks")
+	public ResponseEntity<?> listarProductoNotebooks(Pageable pageable) {
+	
+		return ResponseEntity.ok().body(productService.findNotebooks(pageable));
+		
+	}
+	
 }
