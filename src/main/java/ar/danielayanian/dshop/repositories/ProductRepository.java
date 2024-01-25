@@ -13,23 +13,36 @@ import ar.danielayanian.dshop.entities.Product;
 @Repository
 public interface ProductRepository extends PagingAndSortingRepository<Product, Integer>, JpaRepository<Product,Integer> {
 	
-	@Query(value = "SELECT * FROM PRODUCT P WHERE P.DESTACADO = 1 AND ACTIVE = 1", 
-		   nativeQuery = true)
-	Page<Product> findDestacados(Pageable pageable);
 	
-	@Query(value = "SELECT * FROM PRODUCT P WHERE P.OFERTA = 1 AND ACTIVE = 1", 
+	//@Query("select f from Foo f where f.name like %?1% or f.alias like %?1% or ...")
+	//public List<Foo> findByAnyColumnContaining(String text, Pageable pageable);
+	
+	@Query(value = "select * from product p where p.destacado = %?1% and active = %?2%", 
+			   nativeQuery = true)
+	Page<Product> findDestacados(String destacado, String active, Pageable pageable);
+	
+	
+	Page<Product> findAllByDestacadoAndActive(int destacado, int active, Pageable pageable);
+	
+	
+	
+	/*@Query(value = "select * from product p where p.destacado = 1 and active = 1", 
+		   nativeQuery = true)
+	Page<Product> findDestacados(Pageable pageable);*/
+	
+	@Query(value = "select * from product p where p.oferta = 1 and active = 1", 
 			   nativeQuery = true)
 	Page<Product> findOfertas(Pageable pageable);
 	
-	@Query(value = "SELECT * FROM PRODUCT P WHERE P.DESTACADO = 1", 
+	@Query(value = "select * from product p where p.destacado = 1", 
 			   nativeQuery = true)
 	Page<Product> findTelevisores(Pageable pageable);
 	
-	@Query(value = "SELECT * FROM PRODUCT P WHERE P.DESTACADO = 1", 
+	@Query(value = "select * from product p where p.destacado = 1", 
 			   nativeQuery = true)
 	Page<Product> findCelulares(Pageable pageable);
 	
-	@Query(value = "SELECT * FROM PRODUCT P WHERE P.DESTACADO = 1", 
+	@Query(value = "select * from product p where p.destacado = 1", 
 			   nativeQuery = true)
 	Page<Product> findNotebooks(Pageable pageable);
 	

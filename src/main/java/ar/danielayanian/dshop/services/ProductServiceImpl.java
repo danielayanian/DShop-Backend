@@ -17,14 +17,25 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Product> findAll(Pageable pageable) {
-		return productRepository.findAll(pageable);
+	public Page<Product> findAllByDestacadoAndActive(int destacado, int active, Pageable pageable) {
+		return productRepository.findAllByDestacadoAndActive(destacado, active, pageable);
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
+	public Page<Product> findAll(Pageable pageable) {
+		return productRepository.findAll(pageable);
+	}
+	
+	/*@Override
+	@Transactional(readOnly = true)
 	public Page<Product> findDestacados(Pageable pageable) {
 		return productRepository.findDestacados(pageable);
+	}*/
+	@Override
+	@Transactional(readOnly = true)
+	public Page<Product> findDestacados(String destacado, String active, Pageable pageable) {
+		return productRepository.findDestacados(destacado, active, pageable);
 	}
 	
 	@Override

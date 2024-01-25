@@ -9,7 +9,10 @@ public interface ProductService {
 
 	public Page<Product> findAll(Pageable pageable);
 	
-	public Page<Product> findDestacados(Pageable pageable);
+	public Page<Product> findAllByDestacadoAndActive(int destacado, int active, Pageable pageable);
+	
+	//public Page<Product> findDestacados(Pageable pageable);
+	public Page<Product> findDestacados(String destacado, String active, Pageable pageable);
 	
 	public Page<Product> findOfertas(Pageable pageable);
 	

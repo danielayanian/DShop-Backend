@@ -23,7 +23,7 @@ public class ProductController {
 	@GetMapping("/listarDestacados")
 	public ResponseEntity<?> listarProductoDestacados(Pageable pageable) {
 	
-		return ResponseEntity.ok().body(productService.findDestacados(pageable));
+		return ResponseEntity.ok().body(productService.findAllByDestacadoAndActive(1, 1, pageable));
 		
 	}
 	
