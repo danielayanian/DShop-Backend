@@ -31,6 +31,10 @@ public class Product {
 	@Column(name="precio", length = 255)
     private String precio;
 	
+	//Indicar clave foranea
+	@Column(name="idCategoria")
+    private int idCategoria;
+	
 	@Column(name="destacado")
     private int destacado;
 	

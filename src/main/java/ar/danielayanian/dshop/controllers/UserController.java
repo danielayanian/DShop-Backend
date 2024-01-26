@@ -25,7 +25,7 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
     
-    @PostMapping("/api/user/registration")
+    @PostMapping("/registration")
     public ResponseEntity<Object> saveUSer(@RequestBody UserDTO userDTO){
     	
     	Optional<UserDTO> userOpt = userService.findByEmail(userDTO.getEmail());

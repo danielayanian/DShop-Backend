@@ -1,5 +1,7 @@
 package ar.danielayanian.dshop.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +19,7 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Product> findAllByDestacadoAndActive(int destacado, int active, Pageable pageable) {
+	public Page<Product> findDestacados(int destacado, int active, Pageable pageable) {
 		return productRepository.findAllByDestacadoAndActive(destacado, active, pageable);
 	}
 	
@@ -32,34 +34,32 @@ public class ProductServiceImpl implements ProductService {
 	public Page<Product> findDestacados(Pageable pageable) {
 		return productRepository.findDestacados(pageable);
 	}*/
-	@Override
+	/*@Override
 	@Transactional(readOnly = true)
 	public Page<Product> findDestacados(String destacado, String active, Pageable pageable) {
 		return productRepository.findDestacados(destacado, active, pageable);
+	}*/
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Page<Product> findOfertas(int oferta, int active, Pageable pageable) {
+		return productRepository.findAllByOfertaAndActive(oferta, active, pageable);
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Product> findOfertas(Pageable pageable) {
-		return productRepository.findOfertas(pageable);
+	public Page<Product> findAllCategoria(int idCategoria, int active, Pageable pageable) {
+		return productRepository.findAllByIdCategoriaAndActive(idCategoria, active, pageable);
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Product> findTelevisores(Pageable pageable) {
-		return productRepository.findTelevisores(pageable);
-	}
-	
-	@Override
-	@Transactional(readOnly = true)
-	public Page<Product> findCelulares(Pageable pageable) {
-		return productRepository.findCelulares(pageable);
-	}
-	
-	@Override
-	@Transactional(readOnly = true)
-	public Page<Product> findNotebooks(Pageable pageable) {
-		return productRepository.findNotebooks(pageable);
+	public Product findById(int id) {
+		Optional<Product> op = productRepository.findById(id);
+		if(op.isPresent()) {
+			return op.get();
+		}
+		return null;
 	}
 	
 }
