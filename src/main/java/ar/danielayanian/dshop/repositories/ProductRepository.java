@@ -11,7 +11,7 @@ import ar.danielayanian.dshop.entities.Product;
 
 @EnableJpaRepositories
 @Repository
-public interface ProductRepository extends PagingAndSortingRepository<Product, Integer>, JpaRepository<Product,Integer> {
+public interface ProductRepository extends PagingAndSortingRepository<Product, Integer>, JpaRepository<Product, Integer> {
 	
 	
 	//@Query("select f from Foo f where f.name like %?1% or f.alias like %?1% or ...")

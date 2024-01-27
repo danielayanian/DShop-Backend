@@ -1,8 +1,11 @@
 package ar.danielayanian.dshop.services;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import ar.danielayanian.dshop.entities.Category;
 import ar.danielayanian.dshop.entities.Product;
 
 public interface ProductService {

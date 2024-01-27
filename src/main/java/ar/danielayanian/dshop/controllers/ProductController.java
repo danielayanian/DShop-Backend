@@ -39,24 +39,11 @@ public class ProductController {
 		
 	}
 	
-	@GetMapping("/listarTelevisores")
-	public ResponseEntity<?> listarProductoTelevisores(Pageable pageable) {
+	@GetMapping("/listarProductosDeUnaCategoria")
+	public ResponseEntity<?> listarProductosDeUnaCategoria(Pageable pageable,
+			@RequestParam int idCategoria) {
 	
-		return ResponseEntity.ok().body(productService.findAllCategoria(1, 1, pageable));
-		
-	}
-	
-	@GetMapping("/listarCelulares")
-	public ResponseEntity<?> listarProductoCelulares(Pageable pageable) {
-	
-		return ResponseEntity.ok().body(productService.findAllCategoria(2, 1, pageable));
-		
-	}
-	
-	@GetMapping("/listarNotebooks")
-	public ResponseEntity<?> listarProductoNotebooks(Pageable pageable) {
-	
-		return ResponseEntity.ok().body(productService.findAllCategoria(3, 1, pageable));
+		return ResponseEntity.ok().body(productService.findAllCategoria(idCategoria, 1, pageable));
 		
 	}
 	

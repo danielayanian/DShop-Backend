@@ -50,9 +50,10 @@ public class SecurityConfig {
     	
     	http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/login", "/registration", "/listarTodos",
-                        		"/listarDestacados", "/listarOfertas",
-                        		"/listarTelevisores", "/listarCelulares",
-                        		"/listarNotebooks", "/getProduct").permitAll()
+                        		"/listarDestacados", "/listarOfertas", 
+                        		"/getProduct",
+                        		"/getCategories",
+                        		"/listarProductosDeUnaCategoria").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults())
                 .formLogin(withDefaults())

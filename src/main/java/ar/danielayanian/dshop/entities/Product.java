@@ -28,8 +28,11 @@ public class Product {
 	@Column(name="descripcion", length = 255)
     private String descripcion;
 	
-	@Column(name="precio", length = 255)
-    private String precio;
+	@Column(name="precio")
+    private int precio;
+	
+	@Column(name="stock")
+    private int stock;
 	
 	//Indicar clave foranea
 	@Column(name="idCategoria")
