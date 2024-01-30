@@ -46,14 +46,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         
-    
-    	
     	http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/login", "/registration", "/listarTodos",
                         		"/listarDestacados", "/listarOfertas", 
                         		"/getProduct",
                         		"/getCategories",
-                        		"/listarProductosDeUnaCategoria").permitAll()
+                        		"/listarProductosDeUnaCategoria",
+                        		"/getCategory",
+                        		"/listarComprasDeUnUsuario").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults())
                 .formLogin(withDefaults())

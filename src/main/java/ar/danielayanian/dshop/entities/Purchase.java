@@ -14,35 +14,27 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="product")
-public class Product {
-	
+@Table(name="purchase")
+public class Purchase {
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
     private int id;
-
-	@Column(name="titulo", length = 255)
-    private String titulo;
-	
-	@Column(name="descripcion", length = 255)
-    private String descripcion;
-	
-	@Column(name="precio")
-    private int precio;
-	
-	@Column(name="stock")
-    private int stock;
 	
 	//Indicar clave foranea
-	@Column(name="idCategoria")
-    private int idCategoria;
+	@Column(name="idUser")
+    private int idUser;
 	
-	@Column(name="destacado")
-    private int destacado;
+	//Indicar clave foranea
+	@Column(name="idProduct")
+    private int idProduct;
 	
-	@Column(name="oferta")
-    private int oferta;
+	@Column(name="cantidad")
+    private int cantidad;
+	
+	@Column(name="precioUnidad")
+    private int precioUnidad;
 	
 	@Column(name="active")
     private int active;
