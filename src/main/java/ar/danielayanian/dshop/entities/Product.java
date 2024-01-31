@@ -1,10 +1,9 @@
 package ar.danielayanian.dshop.entities;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,12 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="product")
-public class Product {
-	
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-    private int id;
+public class Product extends BaseEntity {
 
 	@Column(name="titulo", length = 255)
     private String titulo;
@@ -36,7 +30,7 @@ public class Product {
 	
 	//Indicar clave foranea
 	@Column(name="idCategoria")
-    private int idCategoria;
+    private Long idCategoria;
 	
 	@Column(name="destacado")
     private int destacado;
@@ -46,5 +40,17 @@ public class Product {
 	
 	@Column(name="active")
     private int active;
+	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BaseEntity that)) return false;
+        return this.getId().equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getId());
+    }
 	
 }

@@ -50,18 +50,22 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Product> findAllCategoria(int idCategoria, int active, Pageable pageable) {
+	public Page<Product> findAllCategoria(Long idCategoria, int active, Pageable pageable) {
 		return productRepository.findAllByIdCategoriaAndActive(idCategoria, active, pageable);
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Product findById(int id) {
+	public Product findById(Long id) {
 		Optional<Product> op = productRepository.findById(id);
 		if(op.isPresent()) {
 			return op.get();
 		}
 		return null;
+	}
+	
+	public void insert(Product product) {
+		productRepository.save(product);
 	}
 	
 }

@@ -10,7 +10,7 @@ import ar.danielayanian.dshop.entities.Product;
 
 @EnableJpaRepositories
 @Repository
-public interface ProductRepository extends PagingAndSortingRepository<Product, Integer>, JpaRepository<Product, Integer> {
+public interface ProductRepository extends PagingAndSortingRepository<Product, Long>, JpaRepository<Product, Long> {
 	
 	
 	//@Query("select f from Foo f where f.name like %?1% or f.alias like %?1% or ...")
@@ -36,6 +36,6 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, I
 	
 	/*@Query(value = "select * from product p where p.idCategoria = %?1% and active = %?2%", 
 	   nativeQuery = true)*/
-	Page<Product> findAllByIdCategoriaAndActive(int idCategoria, int active, Pageable pageable);
+	Page<Product> findAllByIdCategoriaAndActive(Long idCategoria, int active, Pageable pageable);
 	
 }

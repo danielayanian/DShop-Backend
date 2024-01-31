@@ -10,6 +10,6 @@ import ar.danielayanian.dshop.entities.Product;
 
 @EnableJpaRepositories
 @Repository
-public interface CategoryRepository extends PagingAndSortingRepository<Category, Integer>, JpaRepository<Category, Integer> {
+public interface CategoryRepository extends PagingAndSortingRepository<Category, Long>, JpaRepository<Category, Long> {
 
 }

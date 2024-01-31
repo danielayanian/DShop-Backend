@@ -26,12 +26,18 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Category findById(int id) {
+	public Category findById(Long id) {
 		Optional<Category> op = categoryRepository.findById(id);
 		if(op.isPresent()) {
 			return op.get();
 		}
 		return null;
+	}
+	
+	@Override
+	@Transactional
+	public void insert(Category category) {
+		categoryRepository.save(category);
 	}
 	
 }

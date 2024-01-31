@@ -26,7 +26,7 @@ public class CategoryController {
 	}
 	
 	@GetMapping("/getCategory")
-	public ResponseEntity<?> getCategory(@RequestParam int id) {
+	public ResponseEntity<?> getCategory(@RequestParam Long id) {
 		
 		Category category = categoryService.findById(id);
 		

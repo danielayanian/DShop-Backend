@@ -1,12 +1,10 @@
 package ar.danielayanian.dshop.controllers;
 
 import ar.danielayanian.dshop.DTOs.UserDTO;
-import ar.danielayanian.dshop.entities.User;
 import ar.danielayanian.dshop.services.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +31,7 @@ public class UserController {
     	UserDTO userDTOResponse = new UserDTO();
     	
     	if(userOpt.isPresent()) {
-    		userDTOResponse.setId(-33);//El mail ya estaba registrado
+    		userDTOResponse.setId((long)-33);//El mail ya estaba registrado
     		return ResponseEntity.ok(userDTOResponse);
     	}
     	
@@ -47,7 +45,7 @@ public class UserController {
         	
             return ResponseEntity.ok(userDTOResponse);//Usuario creado
         }
-        userDTOResponse.setId(-32);//Hubo un error y el usuario no ha sido registrado
+        userDTOResponse.setId((long)-32);//Hubo un error y el usuario no ha sido registrado
 		return ResponseEntity.ok(userDTOResponse);
         
     }

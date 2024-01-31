@@ -1,14 +1,11 @@
 package ar.danielayanian.dshop.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.domain.Pageable;
-
 import ar.danielayanian.dshop.entities.Product;
 import ar.danielayanian.dshop.services.ProductService;
 
@@ -41,14 +38,14 @@ public class ProductController {
 	
 	@GetMapping("/listarProductosDeUnaCategoria")
 	public ResponseEntity<?> listarProductosDeUnaCategoria(Pageable pageable,
-			@RequestParam int idCategoria) {
+			@RequestParam Long idCategoria) {
 	
 		return ResponseEntity.ok().body(productService.findAllCategoria(idCategoria, 1, pageable));
 		
 	}
 	
 	@GetMapping("/getProduct")
-	public ResponseEntity<?> getProduct(@RequestParam int id) {
+	public ResponseEntity<?> getProduct(@RequestParam Long id) {
 	
 		Product product = productService.findById(id);
 		if(product!= null) {
