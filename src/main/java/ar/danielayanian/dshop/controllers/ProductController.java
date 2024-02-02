@@ -55,4 +55,14 @@ public class ProductController {
 		
 	}
 	
+	@GetMapping("/buscar")
+	public ResponseEntity<?> buscar(String palabra1, String palabra2,
+			String palabra3, String palabra4, Pageable pageable) {
+	
+		//Cambiar por un metodo que busque las 4 palabras
+		return ResponseEntity.ok().body(productService.findAll(pageable));
+		
+	}
+	
+	
 }

@@ -15,7 +15,13 @@ public class UserDTO {
     
     private String apellido;
     
+    private String dni;
+    
     private String email;
+    
+    private String direccion;
+    
+    private String telefono;
     
     private String password;
     

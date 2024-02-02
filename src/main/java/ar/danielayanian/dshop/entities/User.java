@@ -15,14 +15,23 @@ import lombok.NoArgsConstructor;
 @Table(name="user")
 public class User extends BaseEntity {
     
-    @Column(name="nombre", length = 255)
+    @Column(name="nombre")
     private String nombre;
     
-    @Column(name="apellido", length = 255)
+    @Column(name="apellido")
     private String apellido;
     
-    @Column(name="email", length = 255, unique = true)
+    @Column(name="dni")
+    private String dni;
+    
+    @Column(name="email")
     private String email;
+    
+    @Column(name="direccion")
+    private String direccion;
+    
+    @Column(name="telefono")
+    private String telefono;
     
     @Column(name="password", length = 255)
     private String password;

@@ -53,7 +53,8 @@ public class SecurityConfig {
                         		"/getCategories",
                         		"/listarProductosDeUnaCategoria",
                         		"/getCategory",
-                        		"/listarComprasDeUnUsuario").permitAll()
+                        		"/listarComprasDeUnUsuario",
+                        		"/buscar").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults())
                 .formLogin(withDefaults())
