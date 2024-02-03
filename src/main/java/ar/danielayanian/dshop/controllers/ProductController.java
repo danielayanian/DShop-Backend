@@ -64,5 +64,13 @@ public class ProductController {
 		
 	}
 	
+	@GetMapping("/filtrarDestPorPrecio")
+	public ResponseEntity<?> filtrarDestPorPrecio(Long precio, Pageable pageable) {
+		
+		return ResponseEntity.ok().body(productService.findAllDestPorPrecio(precio, 1, pageable));
+		
+	}
+	
+	
 	
 }

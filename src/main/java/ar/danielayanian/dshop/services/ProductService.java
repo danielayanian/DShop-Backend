@@ -21,4 +21,8 @@ public interface ProductService {
 	
 	public void insert(Product product);
 	
+	//public Page<Product> findAllPorPrecioMaximo(Long precio, int active, String tipo, Pageable pageable);
+	
+	public Page<Product> findAllDestPorPrecio(Long precio, int active, Pageable pageable);
+	
 }

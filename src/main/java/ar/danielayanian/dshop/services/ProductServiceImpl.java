@@ -57,15 +57,38 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	@Transactional(readOnly = true)
 	public Product findById(Long id) {
-		Optional<Product> op = productRepository.findById(id);
+		Optional<Product> op = productRepository.findById(id);//Agregar ver si esta active o no
 		if(op.isPresent()) {
 			return op.get();
 		}
 		return null;
 	}
 	
+	@Override
+	@Transactional
 	public void insert(Product product) {
 		productRepository.save(product);
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Page<Product> findAllDestPorPrecio(Long precio, int active, Pageable pageable){
+		return productRepository.findAllDestPorPrecio(precio, active, pageable);
+	}
+	
+	
+	public static boolean isNumeric(String cadena) {
+
+        boolean resultado;
+
+        try {
+            Integer.parseInt(cadena);
+            resultado = true;
+        } catch (NumberFormatException excepcion) {
+            resultado = false;
+        }
+
+        return resultado;
+    }
 	
 }

@@ -3,6 +3,7 @@ package ar.danielayanian.dshop.repositories;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
@@ -37,5 +38,17 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, L
 	/*@Query(value = "select * from product p where p.idCategoria = %?1% and active = %?2%", 
 	   nativeQuery = true)*/
 	Page<Product> findAllByIdCategoriaAndActive(Long idCategoria, int active, Pageable pageable);
+	
+	@Query(value = "select * from product where precio <= ?1 and destacado = 1 active = ?2", nativeQuery = true)
+	Page<Product> findAllDestPorPrecioMaximo(Long precio, int active, Pageable pageable);
+	
+	@Query(value = "select * from product where precio <= ?1 and oferta = 1 active = ?2", nativeQuery = true)
+	Page<Product> findAllOfertaPorPrecioMaximo(Long precio, int active, Pageable pageable);
+	
+	@Query(value = "select * from product where precio <= ?1 and active = ?2", nativeQuery = true)
+	Page<Product> findAllPorPrecioMaximo(Long precio, int active, Pageable pageable);
+	
+	@Query(value = "select * from product where precio <= ?1 and destacado = 1 and active = ?2", nativeQuery = true)
+	Page<Product> findAllDestPorPrecio(Long precio, int active, Pageable pageable);
 	
 }
