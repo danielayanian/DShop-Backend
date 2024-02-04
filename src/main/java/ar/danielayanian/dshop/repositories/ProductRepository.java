@@ -51,4 +51,10 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, L
 	@Query(value = "select * from product where precio <= ?1 and destacado = 1 and active = ?2", nativeQuery = true)
 	Page<Product> findAllDestPorPrecio(Long precio, int active, Pageable pageable);
 	
+	@Query(value = "select * from product where precio <= ?1 and oferta = 1 and active = ?2", nativeQuery = true)
+	Page<Product> findAllOfertasPorPrecio(Long precio, int active, Pageable pageable);
+	
+	@Query(value = "select * from product where precio <= ?1 and id_categoria = ?2 and active = ?3", nativeQuery = true)
+	Page<Product> findAllCategPorPrecio(Long precio, Long idCategoria, int active, Pageable pageable);
+	
 }

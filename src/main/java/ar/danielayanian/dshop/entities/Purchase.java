@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 public class Purchase extends BaseEntity {
 	
 	//Indicar clave foranea
-	@Column(name="idUser")
+	@Column(name="id_user")
     private Long idUser;
 	
 	//Indicar clave foranea
@@ -31,7 +31,7 @@ public class Purchase extends BaseEntity {
 	
 	//Poner anotaciones de one to many, y en entity Product tambien
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idProduct", nullable = false)
+    @JoinColumn(name = "id_product", nullable = false)
 	private Product product;
 	
 	@Column(name="date")
@@ -40,7 +40,7 @@ public class Purchase extends BaseEntity {
 	@Column(name="cantidad")
     private int cantidad;
 	
-	@Column(name="precioUnidad")
+	@Column(name="precio_unidad")
     private int precioUnidad;
 	
 	@Column(name="active")

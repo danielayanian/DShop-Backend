@@ -25,4 +25,8 @@ public interface ProductService {
 	
 	public Page<Product> findAllDestPorPrecio(Long precio, int active, Pageable pageable);
 	
+	public Page<Product> findAllOfertasPorPrecio(Long precio, int active, Pageable pageable);
+	
+	public Page<Product> findAllCategPorPrecio(Long precio, Long idCategoria, int active, Pageable pageable);
+	
 }

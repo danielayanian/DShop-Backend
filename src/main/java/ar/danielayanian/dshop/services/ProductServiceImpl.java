@@ -76,6 +76,19 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.findAllDestPorPrecio(precio, active, pageable);
 	}
 	
+	@Override
+	@Transactional(readOnly = true)
+	public Page<Product> findAllOfertasPorPrecio(Long precio, int active, Pageable pageable){
+		return productRepository.findAllOfertasPorPrecio(precio, active, pageable);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Page<Product> findAllCategPorPrecio(Long precio, Long idCategoria, int active, Pageable pageable){
+		return productRepository.findAllCategPorPrecio(precio, idCategoria, active, pageable);
+	}
+	
+	
 	
 	public static boolean isNumeric(String cadena) {
 

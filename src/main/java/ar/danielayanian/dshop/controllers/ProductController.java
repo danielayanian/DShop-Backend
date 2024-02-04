@@ -71,6 +71,20 @@ public class ProductController {
 		
 	}
 	
+	@GetMapping("/filtrarOfertasPorPrecio")
+	public ResponseEntity<?> filtrarOfertasPorPrecio(Long precio, Pageable pageable) {
+		
+		return ResponseEntity.ok().body(productService.findAllOfertasPorPrecio(precio, 1, pageable));
+		
+	}
+	
+	@GetMapping("/filtrarCategPorPrecio")
+	public ResponseEntity<?> filtrarCategPorPrecio(Long precio, Long idCategoria, Pageable pageable) {
+		
+		return ResponseEntity.ok().body(productService.findAllCategPorPrecio(precio, idCategoria, 1, pageable));
+		
+	}
+	
 	
 	
 }

@@ -29,7 +29,7 @@ public class Product extends BaseEntity {
     private int stock;
 	
 	//Indicar clave foranea
-	@Column(name="idCategoria")
+	@Column(name="id_categoria")
     private Long idCategoria;
 	
 	@Column(name="destacado")
