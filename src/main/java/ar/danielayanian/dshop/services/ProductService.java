@@ -29,4 +29,9 @@ public interface ProductService {
 	
 	public Page<Product> findAllCategPorPrecio(Long precio, Long idCategoria, int active, Pageable pageable);
 	
+	public Page<Product> findAllWithWords(String palabra1, String palabra2, String palabra3, int active, Pageable pageable);
+	
+	public Page<Product> findAllWithWordsAndPrice(String palabra1, String palabra2, String palabra3, Long precio,
+			int active, Pageable pageable);
+	
 }

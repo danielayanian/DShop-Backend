@@ -55,12 +55,15 @@ public class ProductController {
 		
 	}
 	
-	@GetMapping("/buscar")
-	public ResponseEntity<?> buscar(String palabra1, String palabra2,
-			String palabra3, String palabra4, Pageable pageable) {
+	@GetMapping("/listarBusqueda")
+	public ResponseEntity<?> listarBusqueda(Pageable pageable, @RequestParam String palabras) {
 	
-		//Cambiar por un metodo que busque las 4 palabras
-		return ResponseEntity.ok().body(productService.findAll(pageable));
+		String[] palabrasSeparadas = palabras.split(" {1,}");
+		
+		//Hace la busqueda con las tres primeras palabras ingresadas
+		return ResponseEntity.ok().body(productService.findAllWithWords(palabrasSeparadas.length>0?palabrasSeparadas[0]:"wordNotExist",
+				palabrasSeparadas.length>1?palabrasSeparadas[1]:"wordNotExist",
+						palabrasSeparadas.length>2?palabrasSeparadas[2]:"wordNotExist", 1, pageable));
 		
 	}
 	
@@ -85,6 +88,17 @@ public class ProductController {
 		
 	}
 	
+	@GetMapping("/filtrarBusquedaPorPrecio")
+	public ResponseEntity<?> filtrarBusquedaPorPrecio(Pageable pageable, @RequestParam String palabras,
+			@RequestParam Long precio) {
 	
+		String[] palabrasSeparadas = palabras.split(" {1,}");
+		
+		//Hace la busqueda con las tres primeras palabras ingresadas, usando el precio maximo tambien
+		return ResponseEntity.ok().body(productService.findAllWithWordsAndPrice(palabrasSeparadas.length>0?palabrasSeparadas[0]:"wordNotExist",
+				palabrasSeparadas.length>1?palabrasSeparadas[1]:"wordNotExist",
+						palabrasSeparadas.length>2?palabrasSeparadas[2]:"wordNotExist", precio, 1, pageable));
+		
+	}
 	
 }

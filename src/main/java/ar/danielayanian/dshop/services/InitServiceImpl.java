@@ -1,5 +1,6 @@
 package ar.danielayanian.dshop.services;
 
+import java.text.Normalizer;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -65,6 +66,7 @@ public class InitServiceImpl implements InitService {
     		//Cargo productos iniciales en la DB
         	Product product = new Product();
         	product.setTitulo("Remera roja marca Narrow");
+        	product.setTituloNormalizado(normalize("Remera roja marca Narrow"));
         	product.setDescripcion("Remera cuello redondo, 100% algodón, ideal para el verano.");
         	product.setDestacado(1);
         	product.setActive(1);
@@ -76,6 +78,7 @@ public class InitServiceImpl implements InitService {
         	
         	product = new Product();
         	product.setTitulo("Remera verde marca Narrow");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Remera cuello redondo, 100% algodón, ideal para el verano.");
         	product.setDestacado(1);
         	product.setActive(1);
@@ -87,6 +90,31 @@ public class InitServiceImpl implements InitService {
         	
         	product = new Product();
         	product.setTitulo("Pantalón de jean azul marca Levis");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
+        	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
+        	product.setDestacado(1);
+        	product.setActive(1);
+        	product.setIdCategoria((long)2);
+        	product.setOferta(1);
+        	product.setPrecio(84000);
+        	product.setStock(4);
+        	productService.insert(product);
+        	
+        	product = new Product();
+        	product.setTitulo("Pantalón de jean verde marca Levis");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
+        	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
+        	product.setDestacado(1);
+        	product.setActive(1);
+        	product.setIdCategoria((long)2);
+        	product.setOferta(1);
+        	product.setPrecio(84000);
+        	product.setStock(4);
+        	productService.insert(product);
+        	
+        	product = new Product();
+        	product.setTitulo("Pantalón de jean verde marca Levis");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
         	product.setDestacado(1);
         	product.setActive(1);
@@ -98,6 +126,7 @@ public class InitServiceImpl implements InitService {
         	
         	product = new Product();
         	product.setTitulo("Pantalón de jean azul marca Levis");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
         	product.setDestacado(1);
         	product.setActive(1);
@@ -109,6 +138,7 @@ public class InitServiceImpl implements InitService {
         	
         	product = new Product();
         	product.setTitulo("Pantalón de jean azul marca Levis");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
         	product.setDestacado(1);
         	product.setActive(1);
@@ -120,6 +150,19 @@ public class InitServiceImpl implements InitService {
         	
         	product = new Product();
         	product.setTitulo("Pantalón de jean azul marca Levis");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
+        	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
+        	product.setDestacado(1);
+        	product.setActive(1);
+        	product.setIdCategoria((long)2);
+        	product.setOferta(1);
+        	product.setPrecio(84000);
+        	product.setStock(4);
+        	productService.insert(product);
+        	
+        	product = new Product();
+        	product.setTitulo("Pantalón de jean rojo marca Levis");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
         	product.setDestacado(1);
         	product.setActive(1);
@@ -131,39 +174,7 @@ public class InitServiceImpl implements InitService {
         	
         	product = new Product();
         	product.setTitulo("Pantalón de jean azul marca Levis");
-        	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
-        	product.setDestacado(1);
-        	product.setActive(1);
-        	product.setIdCategoria((long)2);
-        	product.setOferta(1);
-        	product.setPrecio(84000);
-        	product.setStock(4);
-        	productService.insert(product);
-        	
-        	product = new Product();
-        	product.setTitulo("Pantalón de jean azul marca Levis");
-        	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
-        	product.setDestacado(1);
-        	product.setActive(1);
-        	product.setIdCategoria((long)2);
-        	product.setOferta(1);
-        	product.setPrecio(84000);
-        	product.setStock(4);
-        	productService.insert(product);
-        	
-        	product = new Product();
-        	product.setTitulo("Pantalón de jean azul marca Levis");
-        	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
-        	product.setDestacado(1);
-        	product.setActive(1);
-        	product.setIdCategoria((long)2);
-        	product.setOferta(1);
-        	product.setPrecio(84000);
-        	product.setStock(4);
-        	productService.insert(product);
-        	
-        	product = new Product();
-        	product.setTitulo("Pantalón de jean azul marca Levis");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
         	product.setDestacado(1);
         	product.setActive(1);
@@ -177,5 +188,11 @@ public class InitServiceImpl implements InitService {
     	}
 		
 	}
+	
+	public static String normalize(String texto) {
+        texto = Normalizer.normalize(texto, Normalizer.Form.NFD);
+        texto = texto.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+        return texto;
+    }
 	
 }

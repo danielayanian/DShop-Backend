@@ -34,10 +34,11 @@ public class SecurityConfig {
                         		"/listarProductosDeUnaCategoria",
                         		"/getCategory",
                         		"/listarComprasDeUnUsuario",
-                        		"/buscar",
+                        		"/listarBusqueda",
                         		"/filtrarDestPorPrecio",
                         		"/filtrarOfertasPorPrecio",
-                        		"/filtrarCategPorPrecio").permitAll()
+                        		"/filtrarCategPorPrecio",
+                        		"/filtrarBusquedaPorPrecio").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults())
                 .formLogin(withDefaults())

@@ -1,5 +1,6 @@
 package ar.danielayanian.dshop.services;
 
+import java.text.Normalizer;
 import java.util.List;
 import java.util.Optional;
 
@@ -88,6 +89,21 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.findAllCategPorPrecio(precio, idCategoria, active, pageable);
 	}
 	
+	@Override
+	@Transactional(readOnly = true)
+	public Page<Product> findAllWithWords(String palabra1, String palabra2, String palabra3, int active, Pageable pageable){
+		
+		return productRepository.findAllWithWords(normalize(palabra1), normalize(palabra2), normalize(palabra3), active, pageable);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Page<Product> findAllWithWordsAndPrice(String palabra1, String palabra2, String palabra3, Long precio,
+			int active, Pageable pageable){
+		
+		return productRepository.findAllWithWordsAndPrice(normalize(palabra1), normalize(palabra2), normalize(palabra3),
+				precio, active, pageable);
+	}
 	
 	
 	public static boolean isNumeric(String cadena) {
@@ -102,6 +118,12 @@ public class ProductServiceImpl implements ProductService {
         }
 
         return resultado;
+    }
+	
+	public static String normalize(String texto) {
+        texto = Normalizer.normalize(texto, Normalizer.Form.NFD);
+        texto = texto.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+        return texto;
     }
 	
 }

@@ -19,6 +19,9 @@ public class Product extends BaseEntity {
 	@Column(name="titulo", length = 255)
     private String titulo;
 	
+	@Column(name="titulo_normalizado", length = 255)
+    private String tituloNormalizado;
+	
 	@Column(name="descripcion", length = 255)
     private String descripcion;
 	
