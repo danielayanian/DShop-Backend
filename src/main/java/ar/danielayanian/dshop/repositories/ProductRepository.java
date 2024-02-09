@@ -64,7 +64,6 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, L
 			+ " union (select p from Product p where p.tituloNormalizado like %:palabra2% and p.tituloNormalizado like %:palabra3% and p.active = %:active%)"
 			+ " union (select p from Product p where p.tituloNormalizado like %:palabra2% and p.active = %:active%)"
 			+ " union (select p from Product p where p.tituloNormalizado like %:palabra3% and p.active = %:active%))",
-			//+ " union (select p from Product p where p.active = %:active%))",
 			countQuery = "select count(*) from Product p where ((p.tituloNormalizado like %:palabra1% or p.tituloNormalizado like %:palabra2% or p.tituloNormalizado like %:palabra3%) and p.active = %:active%)")
 	Page<Product> findAllWithWords(@Param("palabra1") String palabra1, @Param("palabra2") String palabra2,
 			@Param("palabra3") String palabra3, @Param("active") int active, Pageable pageable);
@@ -75,8 +74,7 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, L
 			+ " union (select p from Product p where p.precio <= %:precio% and p.tituloNormalizado like %:palabra2% and p.tituloNormalizado like %:palabra3% and p.active = %:active%)"
 			+ " union (select p from Product p where p.precio <= %:precio% and p.tituloNormalizado like %:palabra2% and p.active = %:active%)"
 			+ " union (select p from Product p where p.precio <= %:precio% and p.tituloNormalizado like %:palabra3% and p.active = %:active%))",
-			//+ " union (select p from Product p where p.precio <= %:precio% and p.active = %:active%))",
-			countQuery = "select count(*) from Product p where p.precio <= %:precio% and p.active = %:active%")
+			countQuery = "select count(*) from Product p where ((p.tituloNormalizado like %:palabra1% or p.tituloNormalizado like %:palabra2% or p.tituloNormalizado like %:palabra3%) and p.precio <= %:precio% and p.active = %:active%)")
 	Page<Product> findAllWithWordsAndPrice(@Param("palabra1") String palabra1, @Param("palabra2") String palabra2,
 			@Param("palabra3") String palabra3, @Param("precio") Long precio, @Param("active") int active, Pageable pageable);
 	
