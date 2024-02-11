@@ -21,4 +21,10 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return purchaseRepository.findAllPurchaseOfUser(idUser, active, pageable);
 	}
 	
+	@Override
+	@Transactional
+	public void insert(Purchase purchase) {
+		purchaseRepository.save(purchase);
+	}
+	
 }

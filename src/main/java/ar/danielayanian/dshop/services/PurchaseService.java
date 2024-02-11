@@ -9,4 +9,6 @@ public interface PurchaseService {
 
 	public Page<Purchase> findAllPurchaseOfUser(int idUser, int active, Pageable pageable);
 	
+	public void insert(Purchase purchase);
+	
 }

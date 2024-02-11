@@ -1,6 +1,8 @@
 package ar.danielayanian.dshop.services;
 
 import java.text.Normalizer;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import ar.danielayanian.dshop.DTOs.UserDTO;
 import ar.danielayanian.dshop.entities.Category;
 import ar.danielayanian.dshop.entities.Product;
+import ar.danielayanian.dshop.entities.Purchase;
 import ar.danielayanian.dshop.repositories.CategoryRepository;
 
 @Service
@@ -24,6 +27,9 @@ public class InitServiceImpl implements InitService {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	PurchaseService purchaseService;
 	
 	public void loadInitial() {
 		
@@ -63,11 +69,15 @@ public class InitServiceImpl implements InitService {
     		category5.setNombre("Medias");
     		categoryService.insert(category5);
         	
+    		//Creo un calendario
+    		Calendar calendario = Calendar.getInstance();
+    		
     		//Cargo productos iniciales en la DB
         	Product product = new Product();
         	product.setTitulo("Remera roja marca Narrow");
         	product.setTituloNormalizado(normalize("Remera roja marca Narrow"));
         	product.setDescripcion("Remera cuello redondo, 100% algodón, ideal para el verano.");
+        	product.setFotoPrecargada("1.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)1);
@@ -76,10 +86,135 @@ public class InitServiceImpl implements InitService {
         	product.setStock(23);
         	productService.insert(product);
         	
+        	Purchase purchase = new Purchase();
+        	purchase.setFecha(calendario.get(Calendar.DATE)+"/"+calendario.get(Calendar.MONTH)+"/"+calendario.get(Calendar.YEAR));
+        	purchase.setCantidad(1);
+        	purchase.setPrecioUnidad(45000);
+        	product.setId((long)1);
+        	purchase.setProduct(product);
+        	purchase.setIdUser((long)1);
+        	purchase.setActive(1);
+        	purchaseService.insert(purchase);
+        	
         	product = new Product();
         	product.setTitulo("Remera verde marca Narrow");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Remera cuello redondo, 100% algodón, ideal para el verano.");
+        	product.setFotoPrecargada("2.jpg");
+        	product.setDestacado(1);
+        	product.setActive(1);
+        	product.setIdCategoria((long)1);
+        	product.setOferta(1);
+        	product.setPrecio(45000);
+        	product.setStock(14);
+        	productService.insert(product);
+        	
+        	purchase = new Purchase();
+        	purchase.setFecha(calendario.get(Calendar.DATE)+"/"+calendario.get(Calendar.MONTH)+"/"+calendario.get(Calendar.YEAR));
+        	purchase.setCantidad(1);
+        	purchase.setPrecioUnidad(45000);
+        	product.setId((long)2);
+        	purchase.setProduct(product);
+        	purchase.setIdUser((long)1);
+        	purchase.setActive(1);
+        	purchaseService.insert(purchase);
+        	
+        	product = new Product();
+        	product.setTitulo("Remera verde marca Narrow");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
+        	product.setDescripcion("Remera cuello redondo, 100% algodón, ideal para el verano.");
+        	product.setFotoPrecargada("3.jpg");
+        	product.setDestacado(1);
+        	product.setActive(1);
+        	product.setIdCategoria((long)1);
+        	product.setOferta(1);
+        	product.setPrecio(45000);
+        	product.setStock(14);
+        	productService.insert(product);
+        	
+        	product = new Product();
+        	product.setTitulo("Remera verde marca Narrow");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
+        	product.setDescripcion("Remera cuello redondo, 100% algodón, ideal para el verano.");
+        	product.setFotoPrecargada("4.jpg");
+        	product.setDestacado(1);
+        	product.setActive(1);
+        	product.setIdCategoria((long)1);
+        	product.setOferta(1);
+        	product.setPrecio(45000);
+        	product.setStock(14);
+        	productService.insert(product);
+        	
+        	product = new Product();
+        	product.setTitulo("Remera verde marca Narrow");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
+        	product.setDescripcion("Remera cuello redondo, 100% algodón, ideal para el verano.");
+        	product.setFotoPrecargada("5.jpg");
+        	product.setDestacado(1);
+        	product.setActive(1);
+        	product.setIdCategoria((long)1);
+        	product.setOferta(1);
+        	product.setPrecio(45000);
+        	product.setStock(14);
+        	productService.insert(product);
+        	
+        	product = new Product();
+        	product.setTitulo("Remera verde marca Narrow");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
+        	product.setDescripcion("Remera cuello redondo, 100% algodón, ideal para el verano.");
+        	product.setFotoPrecargada("6.jpg");
+        	product.setDestacado(1);
+        	product.setActive(1);
+        	product.setIdCategoria((long)1);
+        	product.setOferta(1);
+        	product.setPrecio(45000);
+        	product.setStock(14);
+        	productService.insert(product);
+        	
+        	product = new Product();
+        	product.setTitulo("Remera verde marca Narrow");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
+        	product.setDescripcion("Remera cuello redondo, 100% algodón, ideal para el verano.");
+        	product.setFotoPrecargada("7.jpg");
+        	product.setDestacado(1);
+        	product.setActive(1);
+        	product.setIdCategoria((long)1);
+        	product.setOferta(1);
+        	product.setPrecio(45000);
+        	product.setStock(14);
+        	productService.insert(product);
+        	
+        	product = new Product();
+        	product.setTitulo("Remera verde marca Narrow");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
+        	product.setDescripcion("Remera cuello redondo, 100% algodón, ideal para el verano.");
+        	product.setFotoPrecargada("8.jpg");
+        	product.setDestacado(1);
+        	product.setActive(1);
+        	product.setIdCategoria((long)1);
+        	product.setOferta(1);
+        	product.setPrecio(45000);
+        	product.setStock(14);
+        	productService.insert(product);
+        	
+        	product = new Product();
+        	product.setTitulo("Remera verde marca Narrow");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
+        	product.setDescripcion("Remera cuello redondo, 100% algodón, ideal para el verano.");
+        	product.setFotoPrecargada("9.jpg");
+        	product.setDestacado(1);
+        	product.setActive(1);
+        	product.setIdCategoria((long)1);
+        	product.setOferta(1);
+        	product.setPrecio(45000);
+        	product.setStock(14);
+        	productService.insert(product);
+        	
+        	product = new Product();
+        	product.setTitulo("Remera verde marca Narrow");
+        	product.setTituloNormalizado(normalize(product.getTitulo()));
+        	product.setDescripcion("Remera cuello redondo, 100% algodón, ideal para el verano.");
+        	product.setFotoPrecargada("10.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)1);
@@ -92,6 +227,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean azul marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
+        	product.setFotoPrecargada("10.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
@@ -104,6 +240,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean verde marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
+        	product.setFotoPrecargada("10.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
@@ -116,6 +253,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean verde marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
+        	product.setFotoPrecargada("10.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
@@ -128,6 +266,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean azul marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
+        	product.setFotoPrecargada("10.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
@@ -140,6 +279,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean azul marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
+        	product.setFotoPrecargada("10.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
@@ -152,6 +292,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean azul marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
+        	product.setFotoPrecargada("10.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
@@ -164,6 +305,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean rojo marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
+        	product.setFotoPrecargada("10.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
@@ -176,6 +318,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean azul marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
+        	product.setFotoPrecargada("10.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);

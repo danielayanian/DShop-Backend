@@ -1,9 +1,11 @@
 package ar.danielayanian.dshop.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +26,9 @@ public class Product extends BaseEntity {
 	
 	@Column(name="descripcion", length = 255)
     private String descripcion;
+	
+	@Column(name="fotoPrecargada")
+    private String fotoPrecargada;
 	
 	@Column(name="precio")
     private int precio;

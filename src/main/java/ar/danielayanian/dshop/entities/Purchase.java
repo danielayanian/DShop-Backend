@@ -10,6 +10,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,17 +26,12 @@ public class Purchase extends BaseEntity {
 	@Column(name="id_user")
     private Long idUser;
 	
-	//Indicar clave foranea
-	/*@Column(name="idProduct")
-    private int idProduct;*/
-	
-	//Poner anotaciones de one to many, y en entity Product tambien
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_product", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_product")
 	private Product product;
 	
-	@Column(name="date")
-    private Date date;
+	@Column(name="fecha")
+    private String fecha;
 	
 	@Column(name="cantidad")
     private int cantidad;

@@ -33,7 +33,6 @@ public class SecurityConfig {
                         		"/getCategories",
                         		"/listarProductosDeUnaCategoria",
                         		"/getCategory",
-                        		"/listarComprasDeUnUsuario",
                         		"/listarBusqueda",
                         		"/filtrarDestPorPrecio",
                         		"/filtrarOfertasPorPrecio",
