@@ -87,7 +87,7 @@ public class InitServiceImpl implements InitService {
         	productService.insert(product);
         	
         	Purchase purchase = new Purchase();
-        	purchase.setFecha(calendario.get(Calendar.DATE)+"/"+calendario.get(Calendar.MONTH)+"/"+calendario.get(Calendar.YEAR));
+        	purchase.setFecha(calendario.get(Calendar.DATE)+"/"+(calendario.get(Calendar.MONTH)+1)+"/"+calendario.get(Calendar.YEAR));
         	purchase.setCantidad(1);
         	purchase.setPrecioUnidad(45000);
         	product.setId((long)1);
@@ -110,7 +110,7 @@ public class InitServiceImpl implements InitService {
         	productService.insert(product);
         	
         	purchase = new Purchase();
-        	purchase.setFecha(calendario.get(Calendar.DATE)+"/"+calendario.get(Calendar.MONTH)+"/"+calendario.get(Calendar.YEAR));
+        	purchase.setFecha(calendario.get(Calendar.DATE)+"/"+(calendario.get(Calendar.MONTH)+1)+"/"+calendario.get(Calendar.YEAR));
         	purchase.setCantidad(1);
         	purchase.setPrecioUnidad(45000);
         	product.setId((long)2);
@@ -227,7 +227,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean azul marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
-        	product.setFotoPrecargada("10.jpg");
+        	product.setFotoPrecargada("11.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
@@ -240,7 +240,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean verde marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
-        	product.setFotoPrecargada("10.jpg");
+        	product.setFotoPrecargada("12.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
@@ -253,7 +253,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean verde marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
-        	product.setFotoPrecargada("10.jpg");
+        	product.setFotoPrecargada("13.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
@@ -266,7 +266,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean azul marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
-        	product.setFotoPrecargada("10.jpg");
+        	product.setFotoPrecargada("11.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
@@ -279,7 +279,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean azul marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
-        	product.setFotoPrecargada("10.jpg");
+        	product.setFotoPrecargada("13.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
@@ -292,7 +292,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean azul marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
-        	product.setFotoPrecargada("10.jpg");
+        	product.setFotoPrecargada("12.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
@@ -305,7 +305,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean rojo marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
-        	product.setFotoPrecargada("10.jpg");
+        	product.setFotoPrecargada("11.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
@@ -318,7 +318,7 @@ public class InitServiceImpl implements InitService {
         	product.setTitulo("Pantalón de jean azul marca Levis");
         	product.setTituloNormalizado(normalize(product.getTitulo()));
         	product.setDescripcion("Moderno pantalón de jean, de la legendaria marca Levis. Modelo ajustado.");
-        	product.setFotoPrecargada("10.jpg");
+        	product.setFotoPrecargada("12.jpg");
         	product.setDestacado(1);
         	product.setActive(1);
         	product.setIdCategoria((long)2);
