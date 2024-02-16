@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService {
         	userDTO.setDireccion(userOpt.get().getDireccion());
         	userDTO.setTelefono(userOpt.get().getTelefono());
         	userDTO.setRoles(userOpt.get().getRoles());
+        	userDTO.setPassword(userOpt.get().getPassword());
         	
         	Optional<UserDTO> userDTOOpt = Optional.ofNullable(userDTO);
         	return userDTOOpt;
@@ -69,13 +70,22 @@ public class UserServiceImpl implements UserService {
     	
     }
     
-    /*@Override
-    public List<UserDTO> findAll(){
+    @Override
+    public void userUpdate(UserDTO userDTO) {
     	
-    	//Que devuelva una lista de usuarios DTO
+    	User user = new User();
+    	user.setId(userDTO.getId());
+    	user.setNombre(userDTO.getNombre());
+    	user.setApellido(userDTO.getApellido());
+    	user.setDni(userDTO.getDni());
+    	user.setEmail(userDTO.getEmail());
+    	user.setTelefono(userDTO.getTelefono());
+    	user.setPassword(userDTO.getPassword());
+    	user.setRoles(userDTO.getRoles());
+    	user.setDireccion(userDTO.getDireccion());
     	
-    	return userRepository.findAll();
+    	userRepository.save(user);
     	
-    }*/
+    }
     
 }

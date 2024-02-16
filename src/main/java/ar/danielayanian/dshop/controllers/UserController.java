@@ -50,6 +50,20 @@ public class UserController {
         
     }
     
+    @PostMapping("/updateUser")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+    public String updateUser(@RequestBody UserDTO userDTO){
+    
+    	//System.out.println(userService.findByEmail(getLoggedInUserDetails().getUsername()).get().getPassword());
+    	
+    	//userDTO.setPassword(userService.findByEmail(getLoggedInUserDetails().getUsername()).get().getPassword());
+    	
+    	userService.userUpdate(userDTO);
+        
+		return "Actualizacion exitosa";
+        
+    }
+    
     @GetMapping("/")
     public String successfulLogin(){
     	

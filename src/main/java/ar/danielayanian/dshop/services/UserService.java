@@ -13,6 +13,8 @@ public interface UserService {
 	
 	public Optional<UserDTO> findByEmail(String username);
 	
+	public void userUpdate(UserDTO userDTO);
+	
 	//public List<UserDTO> findAll();
 	
     //public UserDTO addUser(UserDTO userDTO);
