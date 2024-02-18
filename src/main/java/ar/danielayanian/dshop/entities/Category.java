@@ -15,11 +15,8 @@ import lombok.NoArgsConstructor;
 @Table(name="category")
 public class Category extends BaseEntity {
 
-	@Column(name="nombre", length = 255)
+	@Column(name="nombre", length = 50)
     private String nombre;
-	
-	//@Column(name="products")
-	//private List<Product> products;
 	
 	@Override
     public boolean equals(Object o) {

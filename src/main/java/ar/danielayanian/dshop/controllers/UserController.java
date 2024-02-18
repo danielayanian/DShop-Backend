@@ -1,12 +1,10 @@
 package ar.danielayanian.dshop.controllers;
 
-import ar.danielayanian.dshop.DTOs.UserDTO;
+import ar.danielayanian.dshop.entities.User;
 import ar.danielayanian.dshop.services.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,41 +22,37 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
     
     @PostMapping("/registration")
-    public ResponseEntity<Object> saveUSer(@RequestBody UserDTO userDTO){
+    public ResponseEntity<Object> saveUSer(@RequestBody User user){
     	
-    	Optional<UserDTO> userOpt = userService.findByEmail(userDTO.getEmail());
+    	Optional<User> userOpt = userService.findByEmail(user.getEmail());
     	
-    	UserDTO userDTOResponse = new UserDTO();
+    	User userResponse = new User();
     	
     	if(userOpt.isPresent()) {
-    		userDTOResponse.setId((long)-33);//El mail ya estaba registrado
-    		return ResponseEntity.ok(userDTOResponse);
+    		userResponse.setId((long)-33);//El mail ya estaba registrado
+    		return ResponseEntity.ok(userResponse);
     	}
     	
-    	userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-    	UserDTO result = userService.userRegist(userDTO);
+    	user.setPassword(passwordEncoder.encode(user.getPassword()));
+    	User result = userService.userRegist(user);
         
         if (result.getId() > 0){
-        	userDTOResponse.setId(result.getId());
-        	userDTOResponse.setNombre(result.getNombre());
-        	userDTOResponse.setApellido(result.getApellido());
+        	userResponse.setId(result.getId());
+        	userResponse.setNombre(result.getNombre());
+        	userResponse.setApellido(result.getApellido());
         	
-            return ResponseEntity.ok(userDTOResponse);//Usuario creado
+            return ResponseEntity.ok(userResponse);//Usuario creado
         }
-        userDTOResponse.setId((long)-32);//Hubo un error y el usuario no ha sido registrado
-		return ResponseEntity.ok(userDTOResponse);
+        userResponse.setId((long)-32);//Hubo un error y el usuario no ha sido registrado
+		return ResponseEntity.ok(userResponse);
         
     }
     
     @PostMapping("/updateUser")
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
-    public String updateUser(@RequestBody UserDTO userDTO){
+    public String updateUser(@RequestBody User user){
     
-    	//System.out.println(userService.findByEmail(getLoggedInUserDetails().getUsername()).get().getPassword());
-    	
-    	//userDTO.setPassword(userService.findByEmail(getLoggedInUserDetails().getUsername()).get().getPassword());
-    	
-    	userService.userUpdate(userDTO);
+    	userService.userUpdate(user);
         
 		return "Actualizacion exitosa";
         
@@ -81,7 +75,7 @@ public class UserController {
     
     @GetMapping("/api/user/single")
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
-    public ResponseEntity<UserDTO> getUserDetails(){
+    public ResponseEntity<User> getUserDetails(){
     	
         return ResponseEntity.ok(userService.findByEmail(getLoggedInUserDetails().getUsername()).get());
     

@@ -1,16 +1,9 @@
 package ar.danielayanian.dshop.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import ar.danielayanian.dshop.DTOs.LoginDTO;
-import ar.danielayanian.dshop.DTOs.UserDTO;
 import ar.danielayanian.dshop.entities.User;
 import ar.danielayanian.dshop.repositories.UserRepository;
-
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,72 +12,60 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @Override
-    public UserDTO userRegist(UserDTO userDTO) {
-    	
-    	User user = new User();
-    	user.setNombre(userDTO.getNombre());
-    	user.setApellido(userDTO.getApellido());
-    	user.setEmail(userDTO.getEmail());
-    	user.setPassword(userDTO.getPassword());
-    	user.setRoles(userDTO.getRoles());
+    public User userRegist(User user) {
     	
     	User userCreated = userRepository.save(user);
     	
-    	userDTO.setId(userCreated.getId());
-    	userDTO.setEmail("");
-    	userDTO.setPassword("");
-    	userDTO.setRoles("");
+    	userCreated.setEmail("");
+    	userCreated.setPassword("");
+    	userCreated.setRoles("");
     	
-    	return userDTO;
+    	return userCreated;
     	
     }
     
     @Override
-    public Optional<UserDTO> findByEmail(String username){
+    public Optional<User> findByEmail(String username){
     	
-    	UserDTO userDTO = new UserDTO();
+    	Optional<User> userOptResult = null;
+    	
+    	User user = new User();
     	
     	Optional<User> userOpt = userRepository.findByEmail(username);
     	if(userOpt.isPresent()) {
-        	userDTO.setId(userOpt.get().getId());
-        	userDTO.setNombre(userOpt.get().getNombre());
-        	userDTO.setApellido(userOpt.get().getApellido());
-        	userDTO.setDni(userOpt.get().getDni());
-        	userDTO.setEmail(userOpt.get().getEmail());
-        	userDTO.setDireccion(userOpt.get().getDireccion());
-        	userDTO.setTelefono(userOpt.get().getTelefono());
-        	userDTO.setRoles(userOpt.get().getRoles());
-        	userDTO.setPassword(userOpt.get().getPassword());
+        	user.setId(userOpt.get().getId());
+        	user.setNombre(userOpt.get().getNombre());
+        	user.setApellido(userOpt.get().getApellido());
+        	user.setDni(userOpt.get().getDni());
+        	user.setEmail(userOpt.get().getEmail());
+        	user.setDireccion(userOpt.get().getDireccion());
+        	user.setTelefono(userOpt.get().getTelefono());
+        	user.setRoles(userOpt.get().getRoles());
         	
-        	Optional<UserDTO> userDTOOpt = Optional.ofNullable(userDTO);
-        	return userDTOOpt;
+        	userOptResult = Optional.ofNullable(user);
+        	return userOptResult;
     	}
     	
-    	Optional<UserDTO> userDTOOpt = Optional.ofNullable(null);
+    	userOptResult = Optional.ofNullable(null);
     	
-    	return userDTOOpt;
+    	return userOptResult;
     	
     }
     
     @Override
-    public void userUpdate(UserDTO userDTO) {
+    public void userUpdate(User user) {
     	
-    	User user = new User();
-    	user.setId(userDTO.getId());
-    	user.setNombre(userDTO.getNombre());
-    	user.setApellido(userDTO.getApellido());
-    	user.setDni(userDTO.getDni());
-    	user.setEmail(userDTO.getEmail());
-    	user.setTelefono(userDTO.getTelefono());
-    	user.setPassword(userDTO.getPassword());
-    	user.setRoles(userDTO.getRoles());
-    	user.setDireccion(userDTO.getDireccion());
+    	User userResult = new User();
+    	userResult = userRepository.findById(user.getId()).get();
     	
-    	userRepository.save(user);
+    	userResult.setNombre(user.getNombre());
+    	userResult.setApellido(user.getApellido());
+    	userResult.setDni(user.getDni());
+    	userResult.setTelefono(user.getTelefono());
+    	userResult.setDireccion(user.getDireccion());
+    	
+    	userRepository.save(userResult);
     	
     }
     

@@ -7,10 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ar.danielayanian.dshop.DTOs.UserDTO;
 import ar.danielayanian.dshop.entities.Category;
 import ar.danielayanian.dshop.entities.Product;
 import ar.danielayanian.dshop.entities.Purchase;
+import ar.danielayanian.dshop.entities.User;
 import ar.danielayanian.dshop.repositories.CategoryRepository;
 
 @Service
@@ -33,19 +33,19 @@ public class InitServiceImpl implements InitService {
 	
 	public void loadInitial() {
 		
-		Optional<UserDTO> userDTOOpt = userService.findByEmail("dani@gmail.com");
+		Optional<User> userOpt = userService.findByEmail("dani@gmail.com");
     	
-    	if(!userDTOOpt.isPresent()) {
+    	if(!userOpt.isPresent()) {
     		
     		//Cargo el usuario ADMIN en la DB
-    		UserDTO userDTO = new UserDTO();
-    		userDTO.setNombre("Daniel");
-    		userDTO.setApellido("Ayanian");
-    		userDTO.setEmail("dani@gmail.com");
-    		userDTO.setPassword(passwordEncoder.encode("root"));
-        	userDTO.setRoles("ADMIN");
+    		User user = new User();
+    		user.setNombre("Daniel");
+    		user.setApellido("Ayanian");
+    		user.setEmail("dani@gmail.com");
+    		user.setPassword(passwordEncoder.encode("root"));
+    		user.setRoles("ADMIN");
         	
-        	userService.userRegist(userDTO);
+        	userService.userRegist(user);
         	
         	//Cargo las categorias iniciales en la DB
         	Category category1 = new Category();
