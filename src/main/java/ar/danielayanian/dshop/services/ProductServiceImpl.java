@@ -22,8 +22,8 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Product> findDestacados(int destacado, int active, Pageable pageable) {
-		return productRepository.findAllByDestacadoAndActive(destacado, active, pageable);
+	public Page<Product> findDestacados(int destacado, int active, int stock, Pageable pageable) {
+		return productRepository.findAllByDestacadoAndActiveAndStockGreaterThan(destacado, active, stock, pageable);
 	}
 	
 	@Override
@@ -45,14 +45,14 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Product> findOfertas(int oferta, int active, Pageable pageable) {
-		return productRepository.findAllByOfertaAndActive(oferta, active, pageable);
+	public Page<Product> findOfertas(int oferta, int active, int stock, Pageable pageable) {
+		return productRepository.findAllByOfertaAndActiveAndStockGreaterThan(oferta, active, stock, pageable);
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Product> findAllCategoria(Long idCategoria, int active, Pageable pageable) {
-		return productRepository.findAllByIdCategoriaAndActive(idCategoria, active, pageable);
+	public Page<Product> findAllCategoria(Long idCategoria, int active, int stock, Pageable pageable) {
+		return productRepository.findAllByIdCategoriaAndActiveAndStockGreaterThan(idCategoria, active, stock, pageable);
 	}
 	
 	@Override

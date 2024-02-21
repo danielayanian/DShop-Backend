@@ -25,14 +25,14 @@ public class ProductController {
 	@GetMapping("/listarDestacados")
 	public ResponseEntity<?> listarProductoDestacados(Pageable pageable) {
 	
-		return ResponseEntity.ok().body(productService.findDestacados(1, 1, pageable));
+		return ResponseEntity.ok().body(productService.findDestacados(1, 1, 0, pageable));
 		
 	}
 	
 	@GetMapping("/listarOfertas")
 	public ResponseEntity<?> listarProductoOfertas(Pageable pageable) {
 	
-		return ResponseEntity.ok().body(productService.findOfertas(1, 1, pageable));
+		return ResponseEntity.ok().body(productService.findOfertas(1, 1, 0, pageable));
 		
 	}
 	
@@ -40,7 +40,7 @@ public class ProductController {
 	public ResponseEntity<?> listarProductosDeUnaCategoria(Pageable pageable,
 			@RequestParam Long idCategoria) {
 	
-		return ResponseEntity.ok().body(productService.findAllCategoria(idCategoria, 1, pageable));
+		return ResponseEntity.ok().body(productService.findAllCategoria(idCategoria, 1, 0, pageable));
 		
 	}
 	

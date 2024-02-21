@@ -34,7 +34,11 @@ public class UserController {
     	}
     	
     	user.setPassword(passwordEncoder.encode(user.getPassword()));
+    	
     	User result = userService.userRegist(user);
+    	
+    	result.setDni("");
+    	result.setTelefono("");
         
         if (result.getId() > 0){
         	userResponse.setId(result.getId());
