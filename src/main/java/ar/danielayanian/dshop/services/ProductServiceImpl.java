@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 import ar.danielayanian.dshop.entities.Category;
 import ar.danielayanian.dshop.entities.Product;
 import ar.danielayanian.dshop.repositories.ProductRepository;
+
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -58,17 +61,28 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	@Transactional(readOnly = true)
 	public Product findById(Long id) {
-		Optional<Product> op = productRepository.findById(id);//Agregar ver si esta active o no
+		
+		Optional<Product> op = productRepository.findById(id);
+		
 		if(op.isPresent()) {
 			return op.get();
 		}
 		return null;
+		
 	}
 	
 	@Override
 	@Transactional
 	public void insert(Product product) {
 		productRepository.save(product);
+	}
+	
+	@Override
+	@Transactional
+	public void save(Product product) {
+		
+		productRepository.save(product);
+		
 	}
 	
 	@Override

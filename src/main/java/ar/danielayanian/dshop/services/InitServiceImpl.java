@@ -2,7 +2,6 @@ package ar.danielayanian.dshop.services;
 
 import java.text.Normalizer;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,7 +10,6 @@ import ar.danielayanian.dshop.entities.Category;
 import ar.danielayanian.dshop.entities.Product;
 import ar.danielayanian.dshop.entities.Purchase;
 import ar.danielayanian.dshop.entities.User;
-import ar.danielayanian.dshop.repositories.CategoryRepository;
 
 @Service
 public class InitServiceImpl implements InitService {
@@ -38,14 +36,24 @@ public class InitServiceImpl implements InitService {
     	if(!userOpt.isPresent()) {
     		
     		//Cargo el usuario ADMIN en la DB
-    		User user = new User();
-    		user.setNombre("Daniel");
-    		user.setApellido("Ayanian");
-    		user.setEmail("dani@gmail.com");
-    		user.setPassword(passwordEncoder.encode("root"));
-    		user.setRoles("ADMIN");
+    		User userAdmin = new User();
+    		userAdmin.setNombre("Daniel");
+    		userAdmin.setApellido("Ayanian");
+    		userAdmin.setEmail("dani@gmail.com");
+    		userAdmin.setPassword(passwordEncoder.encode("root"));
+    		userAdmin.setRoles("ADMIN");
         	
-        	userService.userRegist(user);
+        	userService.userRegist(userAdmin);
+        	
+        	//Cargo un usuario USER en la DB
+    		User userUser = new User();
+    		userUser.setNombre("Laura");
+    		userUser.setApellido("Fernández");
+    		userUser.setEmail("laura@gmail.com");
+    		userUser.setPassword(passwordEncoder.encode("Dan-1234"));
+    		userUser.setRoles("USER");
+        	
+        	userService.userRegist(userUser);
         	
         	//Cargo las categorias iniciales en la DB
         	Category category1 = new Category();
@@ -326,7 +334,6 @@ public class InitServiceImpl implements InitService {
         	product.setPrecio(84000);
         	product.setStock(4);
         	productService.insert(product);
-        	
         	
     	}
 		

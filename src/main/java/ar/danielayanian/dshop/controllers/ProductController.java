@@ -1,12 +1,18 @@
 package ar.danielayanian.dshop.controllers;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.domain.Pageable;
 import ar.danielayanian.dshop.entities.Product;
+import ar.danielayanian.dshop.entities.User;
 import ar.danielayanian.dshop.services.ProductService;
 
 @RestController
@@ -48,6 +54,7 @@ public class ProductController {
 	public ResponseEntity<?> getProduct(@RequestParam Long id) {
 	
 		Product product = productService.findById(id);
+		
 		if(product!= null) {
 			return ResponseEntity.ok().body(product);
 		}
@@ -100,5 +107,15 @@ public class ProductController {
 						palabrasSeparadas.length>2?palabrasSeparadas[2]:"wordNotExist", precio, 1, pageable));
 		
 	}
+	
+	@PostMapping("/updateProduct")
+	@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+    public String updateProduct(@RequestBody Product product){
+		
+		productService.save(product);
+    	
+		return "OK";
+        
+    }
 	
 }

@@ -14,6 +14,9 @@ import ar.danielayanian.dshop.entities.Product;
 @Repository
 public interface ProductRepository extends PagingAndSortingRepository<Product, Long>, JpaRepository<Product, Long> {
 	
+	/*@Query(value = "select * from product where id = ?1", nativeQuery = true)
+	Product buscarPorId(Long id);*/
+	
 	Page<Product> findAllByDestacadoAndActiveAndStockGreaterThan(int destacado, int active, int stock, Pageable pageable);
 	
 	Page<Product> findAllByOfertaAndActiveAndStockGreaterThan(int oferta, int active, int stock, Pageable pageable);

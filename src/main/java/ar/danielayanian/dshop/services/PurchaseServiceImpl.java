@@ -1,5 +1,7 @@
 package ar.danielayanian.dshop.services;
 
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +26,14 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	@Transactional
 	public void insert(Purchase purchase) {
+		
+		//Creo un calendario
+		Calendar calendario = Calendar.getInstance();
+		
+		purchase.setFecha(calendario.get(Calendar.DATE)+"/"+(calendario.get(Calendar.MONTH)+1)+"/"+calendario.get(Calendar.YEAR));
+		purchase.setActive(1);
 		purchaseRepository.save(purchase);
+		
 	}
 	
 }
