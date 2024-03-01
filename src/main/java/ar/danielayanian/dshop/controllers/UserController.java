@@ -69,14 +69,6 @@ public class UserController {
         
     }
     
-    /*@GetMapping("/api/user/all")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<List<UserDTO>> getAllUSers(){
-    	
-        return ResponseEntity.ok(userService.findAll());
-        
-    }*/
-    
     @GetMapping("/api/user/single")
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
     public ResponseEntity<User> getUserDetails(){
