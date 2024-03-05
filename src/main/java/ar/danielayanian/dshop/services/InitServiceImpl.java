@@ -47,8 +47,8 @@ public class InitServiceImpl implements InitService {
         	
         	//Cargo un usuario USER en la DB
     		User userUser = new User();
-    		userUser.setNombre("Juan");
-    		userUser.setApellido("Lopez");
+    		userUser.setNombre("Daniel");
+    		userUser.setApellido("Ayanian");
     		userUser.setEmail("user@gmail.com");
     		userUser.setPassword(passwordEncoder.encode("Dan-1234"));
     		userUser.setRoles("USER");
